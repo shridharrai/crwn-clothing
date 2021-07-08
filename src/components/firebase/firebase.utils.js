@@ -3,12 +3,6 @@ import 'firebase/firestore'; //For database
 import 'firebase/auth';
 
 const config = {
-  // apiKey: 'AIzaSyCgcEJhbGPgFDWeSnmKTdDQrl-jYWFbrwQ',
-  // authDomain: 'crwn-59989.firebaseapp.com',
-  // projectId: 'crwn-59989',
-  // storageBucket: 'crwn-59989.appspot.com',
-  // messagingSenderId: '252317830462',
-  // appId: '1:252317830462:web:3e681ac40ccabf018db06f'
   apiKey: 'AIzaSyAnH_i4iZB74SAOCPPk8f7eRTVPv_RdY-c',
   authDomain: 'crwn-db-3f00c.firebaseapp.com',
   databaseURL: 'https://crwn-db-3f00c.firebaseio.com',
@@ -41,6 +35,37 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
   }
   return userRef;
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+  return await batch.commit();
+};
+
+export const convertCollectionsSnapshotToMap = collections => {
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+    return {
+      id: doc.id,
+      routeName: encodeURI(title.toLowerCase()),
+      title,
+      items
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
 };
 
 firebase.initializeApp(config);
