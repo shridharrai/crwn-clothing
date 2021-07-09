@@ -1,7 +1,18 @@
 Live Project Link :- https://crwn619-live.herokuapp.com/
 
 Major Features of the app :
-(i).
+
+(i).Sign-in/Sign-up with firebase and also google sign-in using firebase auth
+
+(ii).Different route pages with react-router-dom i.e. Home, Shop, Checkout etc.
+
+(iii).Cart features : add, remove, increase and decrease the quantity of items
+
+(iv).Checkout page with stripe integration for payment demo
+
+(v).Functional components using react-hooks i.e.useState(), useEffect()
+
+(vi).Mobile responsiveness using media queries
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
