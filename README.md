@@ -1,5 +1,8 @@
 Live Project Link :- https://crwn619-live.herokuapp.com/
 
+Major Features of the app :
+(i).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
